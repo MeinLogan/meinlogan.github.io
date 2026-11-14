@@ -19,7 +19,7 @@
     </div>
 
     <h1>meinlogan</h1>
-    <p class="bio">i make things and play games</p>
+    <p class="quote" id="quote">Loading quote...</p>
 
     
     <nav class="links" aria-label="Social links">
@@ -156,8 +156,46 @@
 
       resize();
       if (reduceMotion) draw(0); else requestAnimationFrame(draw);
-    })();
-    document.getElementById("year").textContent = new Date().getFullYear();
+      })();
+
+      const quotes = [
+  "ain't nobody gonna set my limits but me",
+  "giving up is easy, but i don't think it suits you",
+  "love is the most twisted curse of all",
+  "the only thing granted equally to all is unfair reality",
+  "you're a strong kid so try to help others",
+  "this is exhilarating, get excited",
+  "everybody's after my chainsaw heart. what about my heart? denji's heart?",
+  "why didn't i try to get to know him better?",
+  "go beyond, plus ultra",
+  "how can something so beautiful exist in this world?"
+];
+
+const quoteElement = document.getElementById("quote");
+let previousQuote = -1;
+
+function changeQuote() {
+  let nextQuote = Math.floor(Math.random() * quotes.length);
+
+  if (quotes.length > 1) {
+    while (nextQuote === previousQuote) {
+      nextQuote = Math.floor(Math.random() * quotes.length);
+    }
+  }
+
+  previousQuote = nextQuote;
+
+  quoteElement.classList.add("quote-changing");
+
+  setTimeout(() => {
+    quoteElement.textContent = `“${quotes[nextQuote]}”`;
+    quoteElement.classList.remove("quote-changing");
+  }, 350);
+}
+
+changeQuote();
+
+setInterval(changeQuote, 6000);
   </script>
 </body>
 </html>
