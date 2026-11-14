@@ -106,13 +106,32 @@ h1 {
   animation: fade-up .75s .25s both;
 }
 
-.bio {
-  max-width: 310px;
+.quote {
+  max-width: 330px;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin: 14px auto 25px;
   color: #e0e5eb;
   font-size: 14px;
   line-height: 1.75;
-  animation: fade-up .75s .35s both;
+  font-style: italic;
+
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease,
+    filter 0.35s ease;
+}
+
+.quote.quote-changing {
+  opacity: 0;
+  transform: translateY(7px);
+  filter: blur(3px);
 }
 
 .links { display: grid; gap: 10px; }
